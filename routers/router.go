@@ -10,4 +10,5 @@ func init() {
     beego.Router("/admin", &controllers.UserController{})
     beego.Router("/login", &controllers.LoginController{})
     beego.Router("/index", &controllers.IndexController{})
+    beego.Router("/reptile", &controllers.ReptileController{})
 }
