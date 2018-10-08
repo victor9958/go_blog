@@ -26,5 +26,5 @@ func init(){
 		orm.Debug = true
 	}
 
-	//orm.RunSyncdb("default", false, false)
+	orm.RunSyncdb("default", false, false)
 }

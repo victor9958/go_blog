@@ -94,7 +94,7 @@ func parse(){
 
 
 		//评分
-		pattern3 :=`<property="v:average">(.*?)</span>`
+		pattern3 :=`property="v:average">(.*?)</span>`
 		rp3 :=regexp.MustCompile(pattern3)
 		find_txt3 := rp3.FindAllStringSubmatch(html,-1)
 
