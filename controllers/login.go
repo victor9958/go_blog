@@ -37,11 +37,11 @@ type Address struct {
 	CityName string
 	parentId int
 }
-type User struct {
-	Id int
-	Name string
-	AddData []*Address
-}
+//type User struct {
+//	Id int
+//	Name string
+//	AddData []*Address
+//}
 
 
 func (c *LoginController) Put()  {

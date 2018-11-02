@@ -9,6 +9,8 @@ import (
 	_ "github.com/gomodule/redigo/redis"
 	"github.com/astaxie/beego/cache"
 	"time"
+	"crypto/md5"
+	"fmt"
 )
 
 func insertCeshi(){
@@ -16,6 +18,30 @@ func insertCeshi(){
 	ceshiData := models.Blogger{}
 	ceshiData.Name = "goCeshi"
 	Id,err:=o.Insert(&ceshiData)
+	if err!=nil {
+		beego.Info("失败",err)
+		return
+	}
+	beego.Info("成功",Id)
+}
+
+func insertUser(){
+	o := orm.NewOrm()
+	userData := models.User{}
+	userData.Ip = "127.0.0.1"
+	//生成一个md5的字符串
+	pwd := []byte("123456") //二进制
+	has := md5.Sum(pwd) //二进制
+	has16 := fmt.Sprintf("%x", has) //转化成16进制
+	//
+
+	userData.Pwd = has16
+	userData.Sex = 1
+	userData.HeadImg = "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epiahkUQrtA6XRdd20ZMavWzLM9WrMtuxHxsLxia0O7QgnG75lfADdialvCdr5KxMNxia1kFVWNibK4pvg/132";
+	userData.Sign = "这是从数据库总获得的简介,ip:"+userData.Ip
+	userData.LineStatus = 1
+
+	Id,err:=o.Insert(&userData)
 	if err!=nil {
 		beego.Info("失败",err)
 		return
@@ -50,7 +76,8 @@ func readCeshi(){
 
 func main() {
 	//server := ""
-
+	//添加用户
+	insertUser();
 
 	//insertBlog()
 	//insertCeshi()
