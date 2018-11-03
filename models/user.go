@@ -1,6 +1,7 @@
 package models
 
 import (
+	"beego/models"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -13,5 +14,6 @@ type User struct {
 	Sign string `orm:"size(200)"`
 	LineStatus int
 	Status int
+	Group *models.Group `orm:"rel(fk)"`
 }
 
