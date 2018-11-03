@@ -128,6 +128,7 @@ func(web *WeblistController)Post(){
 	//	return
 	//}
 
+	//获取分组信息
 	var groups []*models.Group
 	_,err := o.QueryTable("group").
 		Filter("id",1).
@@ -136,6 +137,8 @@ func(web *WeblistController)Post(){
 		beego.Error(err)
 		return
 	}
+
+	//获取我的分组内的用户
 
 
 	web.Data["json"] = groups
