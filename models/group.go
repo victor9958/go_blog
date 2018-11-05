@@ -6,8 +6,9 @@ import (
 
 type Group struct {
 	Id int
-	UserId int
+	//UserId int
 	GroupName string `orm:"size(32)"`
 	RemarkName string `orm:"size(50)"`
+	User *User `orm:"rel(fk)"`
 }
 

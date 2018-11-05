@@ -128,20 +128,90 @@ func(web *WeblistController)Post(){
 	//	return
 	//}
 
+	////获取分组信息
+	//var groups []*models.Group
+	//_,err := o.QueryTable("group").
+	//	Filter("id",1).
+	//	All(&groups)
+	//if err != nil {
+	//	beego.Error(err)
+	//	return
+	//}
+
+
+	//获取分组信息
+	//var users []*models.User
+	//_,err := o.QueryTable("user").
+	//	Filter("id",2).
+	//	All(&users)
+	//if err != nil {
+	//	beego.Error(err)
+	//	return
+	//}
+
+	//获取我的分组内的用户
 	//获取分组信息
 	var groups []*models.Group
 	_,err := o.QueryTable("group").
-		Filter("id",1).
 		All(&groups)
 	if err != nil {
 		beego.Error(err)
 		return
 	}
 
-	//获取我的分组内的用户
-
 
 	web.Data["json"] = groups
+	web.ServeJSON()
+
+
+}
+
+
+func(web *WeblistController)Put(){
+	//获取分组信息
+	var users []*models.User
+	_,err := orm.NewOrm().QueryTable("user").
+		RelatedSel("Group").
+		Filter("Id",2).
+		All(&users)
+	if err != nil {
+		beego.Error(err)
+		return
+	}
+	//var f interface{}
+	beego.Info(users)
+	//m := f.(map[string]interface{})
+	for k,v:=range users{
+		//if _,ok:=v.(string);ok  {
+		//	beego.Info(k,"==string==>",v)
+		//}
+		beego.Info(k,"==string==>",v)
+	}
+
+	//m := f.(map[string]interface{})
+	//for k,v:=range m{
+	//	//beego.Info(reflect.TypeOf(v))
+	//	if _,ok:=v.(string);ok {
+	//		beego.Info(k,"==stirng==>",v)
+	//	}
+	//	if _,ok2:=v.(float64);ok2 {
+	//		beego.Info(k,"==float64==>",v)
+	//	}
+	//	beego.Info(k,"==>",v)
+	//}
+
+	//获取我的分组内的用户
+	//获取分组信息
+	//var groups []*models.Group
+	//_,err := o.QueryTable("group").
+	//	All(&groups)
+	//if err != nil {
+	//	beego.Error(err)
+	//	return
+	//}
+
+
+	web.Data["json"] = users
 	web.ServeJSON()
 
 
