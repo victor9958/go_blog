@@ -1,1 +1,4 @@
 config/app.conf
+/.idea
+/.idea/*
+
